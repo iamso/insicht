@@ -1,0 +1,17 @@
+{
+  "name": "insicht",
+  "repository": "iamso/insicht",
+  "description": "Viewport animation using IntersectionObserver.",
+  "version": "0.1.0",
+  "keywords": [
+    "viewport",
+    "intersectionobserver"
+  ],
+  "scripts": [
+    "dist/insicht.js",
+    "dist/insicht.min.js",
+    "dist/insicht.next.js",
+    "dist/insicht.next.min.js"
+  ],
+  "license": "MIT"
+}
