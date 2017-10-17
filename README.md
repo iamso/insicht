@@ -2,6 +2,8 @@ InSicht
 =======
 Viewport animation using IntersectionObserver.
 
+Make sure to add a [polyfill](https://github.com/WICG/IntersectionObserver/tree/gh-pages/polyfill) if needed. Check [caniuse](http://caniuse.com/#feat=intersectionobserver) for more info on support.
+
 Install
 -------
 
