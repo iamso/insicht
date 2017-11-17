@@ -35,6 +35,7 @@ const insicht = new InSicht({
   stagger: 100,
   threshold: 0,
   autoRefresh: false,
+  autoReset: false,
   init: (item, instance) => {},
   done: (item, instance) => {},
 });
