@@ -172,6 +172,20 @@ export default class InSicht {
   }
 
   /**
+   * Remove an item from the observer, only if autoRefresh is false
+   * @param  {HTMLElement} item - item to be removed
+   * @return {Object}           - InSicht instance
+   */
+  remove(item) {
+    if (!this.options.autoRefresh && item && item.nodeType === Node.ELEMENT_NODE) {
+      let index = this._items.indexOf(item);
+      index > -1 && this._items.splice(index, 1);
+      this.intersection.unobserve(item);
+    }
+    return this;
+  }
+
+  /**
    * Reset visible class on items
    * @return {Object} - InSicht instance
    */
