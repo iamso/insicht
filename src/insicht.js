@@ -10,6 +10,7 @@ const defaults = {
   threshold: 0,
   autoRefresh: false,
   autoReset: false,
+  autoRemove: false,
   init: () => {},
   done: () => {},
 };
@@ -115,6 +116,9 @@ export default class InSicht {
         item.style.transitionDelay = `${stagger}ms`;
         item.classList.add(this.options.visibleClass);
         /^f/.test(typeof this.options.done) && this.options.done.apply(this, [item, this]);
+        if (this.options.autoRemove) {
+          this.remove(item);
+        }
       }
       else if (!visible && this.options.autoReset && item.classList.contains(this.options.visibleClass)) {
         item.style.transitionDelay = '';
