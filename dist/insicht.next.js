@@ -1,9 +1,9 @@
 /*!
- * insicht - version 0.2.0
+ * insicht - version 0.3.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2017 Steve Ottoz
+ * Copyright (c) 2018 Steve Ottoz
  */
 /**
  * Default options
@@ -17,6 +17,7 @@ const defaults = {
   threshold: 0,
   autoRefresh: false,
   autoReset: false,
+  autoRemove: false,
   init: () => {},
   done: () => {}
 };
@@ -122,6 +123,9 @@ export default class InSicht {
         item.style.transitionDelay = `${stagger}ms`;
         item.classList.add(this.options.visibleClass);
         /^f/.test(typeof this.options.done) && this.options.done.apply(this, [item, this]);
+        if (this.options.autoRemove) {
+          this.remove(item);
+        }
       } else if (!visible && this.options.autoReset && item.classList.contains(this.options.visibleClass)) {
         item.style.transitionDelay = '';
         item.classList.remove(this.options.visibleClass);
@@ -175,6 +179,20 @@ export default class InSicht {
       this._items = items;
       this.connect();
     }
+  }
+
+  /**
+   * Remove an item from the observer, only if autoRefresh is false
+   * @param  {HTMLElement} item - item to be removed
+   * @return {Object}           - InSicht instance
+   */
+  remove(item) {
+    if (!this.options.autoRefresh && item && item.nodeType === Node.ELEMENT_NODE) {
+      let index = this._items.indexOf(item);
+      index > -1 && this._items.splice(index, 1);
+      this.intersection.unobserve(item);
+    }
+    return this;
   }
 
   /**

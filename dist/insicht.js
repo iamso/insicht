@@ -1,9 +1,9 @@
 /*!
- * insicht - version 0.2.0
+ * insicht - version 0.3.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2017 Steve Ottoz
+ * Copyright (c) 2018 Steve Ottoz
  */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
@@ -66,6 +66,7 @@
     threshold: 0,
     autoRefresh: false,
     autoReset: false,
+    autoRemove: false,
     init: function init() {},
     done: function done() {}
   };
@@ -187,6 +188,9 @@
             item.style.transitionDelay = stagger + 'ms';
             item.classList.add(this.options.visibleClass);
             /^f/.test(_typeof(this.options.done)) && this.options.done.apply(this, [item, this]);
+            if (this.options.autoRemove) {
+              this.remove(item);
+            }
           } else if (!visible && this.options.autoReset && item.classList.contains(this.options.visibleClass)) {
             item.style.transitionDelay = '';
             item.classList.remove(this.options.visibleClass);
@@ -256,6 +260,16 @@
       key: 'matches',
       value: function matches(el, selector) {
         return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+      }
+    }, {
+      key: 'remove',
+      value: function remove(item) {
+        if (!this.options.autoRefresh && item && item.nodeType === Node.ELEMENT_NODE) {
+          var index = this._items.indexOf(item);
+          index > -1 && this._items.splice(index, 1);
+          this.intersection.unobserve(item);
+        }
+        return this;
       }
     }, {
       key: 'reset',
