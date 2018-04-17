@@ -110,9 +110,9 @@ export default class InSicht {
       const item = items[i].target;
       const ratio = Math.min(items[i].intersectionRatio, 1);
       const visible = ratio > 0;
-      stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
 
       if (visible && !item.classList.contains(this.options.visibleClass)) {
+        stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
         item.style.transitionDelay = `${stagger}ms`;
         item.classList.add(this.options.visibleClass);
         /^f/.test(typeof this.options.done) && this.options.done.apply(this, [item, this]);
