@@ -26,7 +26,10 @@ export default class InSicht {
    * @return {Object}           - InSicht instance
    */
   constructor(options = {}) {
-    this.options = Object.assign({}, defaults, options);
+    this.options = {
+      ...defaults,
+      ...options,
+    };
     this.init();
   }
 
