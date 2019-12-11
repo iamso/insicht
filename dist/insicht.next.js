@@ -1,5 +1,5 @@
 /*!
- * insicht - version 0.5.0
+ * insicht - version 0.6.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -83,10 +83,10 @@ export default class InSicht {
    */
   connect() {
     this.disconnect();
-    for (let item of this._items) {
-      /^f/.test(typeof this.options.init) && this.options.init.apply(this, [item, this]);
+    this._items.forEach(item => {
+      this.options.init instanceof Function && this.options.init.apply(this, [item, this]);
       this.intersection.observe(item);
-    }
+    });
     if (this.options.autoRefresh) {
       this.mutation.observe(this.options.container, {
         subtree: true,
@@ -124,7 +124,7 @@ export default class InSicht {
         stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
         item.style.transitionDelay = `${stagger}ms`;
         item.classList.add(this.options.visibleClass);
-        /^f/.test(typeof this.options.done) && this.options.done.apply(this, [item, this]);
+        this.options.done instanceof Function && this.options.done.apply(this, [item, this]);
         if (this.options.autoRemove) {
           this.remove(item);
         }
@@ -141,17 +141,18 @@ export default class InSicht {
    */
   onMutation(mutations) {
     mutations = [].slice.call(mutations, 0);
-    for (let mutation of mutations) {
+    mutations.forEach(mutation => {
       let update = false;
-      for (let item of [].slice.call(mutation.addedNodes, 0)) {
+      [].slice.call(mutation.addedNodes, 0).forEach(item => {
         if (item.nodeType === Node.ELEMENT_NODE && (this.matches(item, this.options.selector) || item.querySelectorAll(this.options.selector).length)) {
           update = true;
         }
-      }
+      });
+
       if (update) {
         this.refresh();
       }
-    }
+    });
   }
 
   /**
@@ -202,9 +203,9 @@ export default class InSicht {
    * @return {Object} - InSicht instance
    */
   reset() {
-    for (let item of this._items) {
+    this._items.forEach(item => {
       item.classList.remove(this.options.visibleClass);
-    }
+    });
     return this;
   }
 
