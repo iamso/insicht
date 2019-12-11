@@ -1,9 +1,9 @@
 /*!
- * insicht - version 0.3.1
+ * insicht - version 0.4.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2018 Steve Ottoz
+ * Copyright (c) 2019 Steve Ottoz
  */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
