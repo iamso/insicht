@@ -13,7 +13,7 @@
     "name": "Steve Ottoz",
     "email": "so@dev.so"
   },
-  "main": "dist/insicht.next.js",
+  "main": "dist/insicht.js",
   "keywords": [
     "viewport",
     "intersectionobserver"
