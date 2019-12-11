@@ -1,5 +1,5 @@
 /*!
- * insicht - version 0.4.0
+ * insicht - version 0.5.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
@@ -28,6 +28,20 @@
     return typeof obj;
   } : function (obj) {
     return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
   };
 
   function _classCallCheck(instance, Constructor) {
@@ -87,7 +101,7 @@
 
       _classCallCheck(this, InSicht);
 
-      this.options = Object.assign({}, defaults, options);
+      this.options = _extends({}, defaults, options);
       this.init();
     }
 

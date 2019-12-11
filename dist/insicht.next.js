@@ -1,10 +1,12 @@
 /*!
- * insicht - version 0.4.0
+ * insicht - version 0.5.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
  * Copyright (c) 2019 Steve Ottoz
  */
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 /**
  * Default options
  * @type {Object}
@@ -33,7 +35,7 @@ export default class InSicht {
    * @return {Object}           - InSicht instance
    */
   constructor(options = {}) {
-    this.options = Object.assign({}, defaults, options);
+    this.options = _extends({}, defaults, options);
     this.init();
   }
 
