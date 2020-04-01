@@ -1,9 +1,9 @@
 /*!
- * insicht - version 0.6.0
+ * insicht - version 0.7.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2019 Steve Ottoz
+ * Copyright (c) 2020 Steve Ottoz
  */
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
@@ -168,8 +168,7 @@
         items.sort(this.order.bind(this));
         for (var i in items) {
           var item = items[i].target;
-          var ratio = Math.min(items[i].intersectionRatio, 1);
-          var visible = ratio > 0;
+          var visible = items[i].isIntersecting;
 
           if (visible && !item.classList.contains(this.options.visibleClass)) {
             stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);

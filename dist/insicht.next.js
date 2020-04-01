@@ -1,9 +1,9 @@
 /*!
- * insicht - version 0.6.0
+ * insicht - version 0.7.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
- * Copyright (c) 2019 Steve Ottoz
+ * Copyright (c) 2020 Steve Ottoz
  */
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -117,8 +117,7 @@ export default class InSicht {
     items.sort(this.order.bind(this));
     for (let i in items) {
       const item = items[i].target;
-      const ratio = Math.min(items[i].intersectionRatio, 1);
-      const visible = ratio > 0;
+      const visible = items[i].isIntersecting;
 
       if (visible && !item.classList.contains(this.options.visibleClass)) {
         stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
