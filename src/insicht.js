@@ -111,8 +111,7 @@ export default class InSicht {
     items.sort(this.order.bind(this));
     for (let i in items) {
       const item = items[i].target;
-      const ratio = Math.min(items[i].intersectionRatio, 1);
-      const visible = ratio > 0;
+      const visible = items[i].isIntersecting;
 
       if (visible && !item.classList.contains(this.options.visibleClass)) {
         stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
