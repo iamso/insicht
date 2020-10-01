@@ -7,14 +7,6 @@ Make sure to add a [polyfill](https://github.com/w3c/IntersectionObserver/tree/m
 Install
 -------
 
-### With Bower
-
-```bash
-bower install insicht
-```
-
-### With NPM
-
 ```bash
 npm install insicht
 ```
