@@ -1,5 +1,5 @@
 /*!
- * insicht - version 0.8.0
+ * insicht - version 0.9.0
  *
  * Made with ❤ by Steve Ottoz so@dev.so
  *
