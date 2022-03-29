@@ -8,6 +8,7 @@ const defaults = {
   visibleClass: 'sichtbar',
   stagger: 100,
   threshold: 0,
+  useAnimationDelay: false,
   autoRefresh: false,
   autoReset: false,
   autoRemove: false,
@@ -115,7 +116,9 @@ export default class InSicht {
 
       if (visible && !item.classList.contains(this.options.visibleClass)) {
         stagger = i === 0 ? 0 : stagger + (+item.dataset.stagger || this.options.stagger);
-        item.style.transitionDelay = `${stagger}ms`;
+        this.options.useAnimationDelay
+          ? (item.style.animationDelay = `${stagger}ms`)
+          : (item.style.transitionDelay = `${stagger}ms`);
         item.classList.add(this.options.visibleClass);
         this.options.done instanceof Function && this.options.done.apply(this, [item, this]);
         if (this.options.autoRemove) {
@@ -123,7 +126,9 @@ export default class InSicht {
         }
       }
       else if (!visible && this.options.autoReset && item.classList.contains(this.options.visibleClass)) {
-        item.style.transitionDelay = '';
+        this.options.useAnimationDelay
+          ? (item.style.animationDelay = '')
+          : (item.style.transitionDelay = '');
         item.classList.remove(this.options.visibleClass);
       }
     }
