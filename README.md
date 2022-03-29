@@ -26,8 +26,10 @@ const insicht = new InSicht({
   visibleClass: 'sichtbar',
   stagger: 100,
   threshold: 0,
+  useAnimationDelay: false,
   autoRefresh: false,
   autoReset: false,
+  autoRemove: false,
   init: (item, instance) => {},
   done: (item, instance) => {},
 });
